@@ -10,16 +10,29 @@ The script is used to investigate user data of bikesharing in Chicago, New York 
 ### Files used
 chicago.csv; washington.csv; new_york_city.csv
 
+### Data
+The data is provided by the Udacity programme. It contains user data of a bikeshare vendor. The data files contain the following headers:
+- Start Time
+- End Time
+- Trip Duration (in seconds)
+- Start Station
+- End Station
+- User Type (Subscriber or Customer)
+
+The Chicago and New York City files also contain the following headers:
+- Gender
+- Birth Year
+
 ### Resources
 Sites used for the project Bikeshare:
 
--docs.python.org
--stackoverflow.com
--www.guru99.com
--pandas.pydata.org
--matplotlib.org
+- docs.python.org
+- stackoverflow.com
+- www.guru99.com
+- pandas.pydata.org
+- matplotlib.org
 
 Books used for the project Bikeshare:
 
--Learning Python - Mark Lutz
--[John-Paul-Mueller]-Beginning-Programming-with-Pyt(z-lib.org)
+- Learning Python - Mark Lutz
+- [John-Paul-Mueller]-Beginning-Programming-with-Pyt(z-lib.org)
