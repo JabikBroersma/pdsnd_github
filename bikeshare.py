@@ -131,6 +131,11 @@ def time_stats(df):
     hour_mode=df['starthour'].mode()
     print('*  The most common travel hour of the day is: {} \'o clock'.format(int(hour_mode)))
 
+   '''
+   Refactoring the overall distribution:
+   speeding up the refresh rate
+   '''
+
     # plots the overall distribution of travel hours during the chosen period
     df['starthour'].plot(kind='hist',bins=24,histtype='stepfilled',facecolor='b')
     plt.xlabel('Hour of the day')
@@ -174,6 +179,9 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
+    '''
+    Refactor: simplify calculation time
+    '''
 
     df['StartTime']=pd.to_datetime(df['Start Time'])
     df['EndTime']=pd.to_datetime(df['End Time'])
@@ -220,8 +228,19 @@ def user_stats(df):
         print('**  Crosscheck: Total users + Unknown users = {}'.format(total_users+df_unknown_user))
     else:
         print ('*  No User Type data available!!')
+<<<<<<< HEAD
 
 
+||||||| 809c53f
+
+
+=======
+
+    '''
+    Refactor: simplify wrangling gender data
+    '''
+
+>>>>>>> refactoring
     # Display counts of gender
     if 'Gender' in df.columns:
         total_gender=0
