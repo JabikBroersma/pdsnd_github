@@ -43,11 +43,11 @@ The following questions about the bike sharing are considered:
 ### Resources
 Sites used for the project Bikeshare:
 
-- docs.python.org
-- stackoverflow.com
-- www.guru99.com
-- pandas.pydata.org
-- matplotlib.org
+- http://docs.python.org
+- http://stackoverflow.com
+- http://www.guru99.com
+- http://pandas.pydata.org
+- http://matplotlib.org
 
 Books used for the project Bikeshare:
 
