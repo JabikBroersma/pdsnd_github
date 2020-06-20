@@ -23,6 +23,23 @@ The Chicago and New York City files also contain the following headers:
 - Gender
 - Birth Year
 
+### Analysis
+The following questions about the bike sharing are considered:
+- Popular date/time
+  - Most popular month for start time?
+  - Most popular day of week (Monday, Tuesday, etc.) for start time?
+  - Most popular hour of day for start time?
+
+- Location
+  - Most popular start station?
+  - Most popular end station?
+  - Most popular trip?
+
+- Gender details
+  - Counts of each user type?
+  - Counts of gender?
+  - Birth details
+
 ### Resources
 Sites used for the project Bikeshare:
 
