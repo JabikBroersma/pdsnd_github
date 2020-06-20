@@ -179,6 +179,9 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
+    '''
+    Refactor: simplify calculation time
+    '''
 
     df['StartTime']=pd.to_datetime(df['Start Time'])
     df['EndTime']=pd.to_datetime(df['End Time'])
