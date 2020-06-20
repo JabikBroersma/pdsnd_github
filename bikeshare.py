@@ -33,27 +33,27 @@ def get_filters():
         (str) day - name of the day of week to filter by, or "all" to apply no day filter
     """
     print('Hello! Let\'s explore some US bikeshare data!\n')
-    
+
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
     city=""
-    while city not in ('chicago', 'new york city', 'washington'): 
+    while city not in ('chicago', 'new york city', 'washington'):
         city = input('Would you like to explore the data of Chicago, New York City or Washington? \n')
         city=city.lower()
-     
+
     # get user input for month (all, january, february, ... , june)
     month=""
     while month.lower() not in ('january', 'february', 'march','april', 'may', 'june', 'all'):
-        month = input('Please choose which month (from January up to June) you would like to ' 
+        month = input('Please choose which month (from January up to June) you would like to '
                       'explore (enter "all" for all available months: \n')
         month=month.lower()
-                
+
     # get user input for day of week (all, monday, tuesday, ... sunday)
     day=""
     while day not in ('sunday', 'monday','tuesday','wednesday', 'thursday', 'friday','saturday', 'all'):
-        day = input('Please choose which day (monday till sunday) you would like to ' 
+        day = input('Please choose which day (monday till sunday) you would like to '
                     'explore (enter "all" for all days of the week: \n')
         day=day.lower()
-            
+
     print('='*60)
     return city, month, day
 
@@ -76,26 +76,26 @@ def load_data(city, month, day):
     file_path="c:/users/HP/downloads/bikeshare/"
     """
     file_path=""
-    
+
     df=pd.read_csv(str(file_path)+'{}'.format(CITY_DATA[city]))
-    
+
     if month != "all":
         df = df[pd.to_datetime(df['Start Time']).dt.strftime('%B')==month.capitalize()]
-    
+
     if day != "all":
         df = df[pd.to_datetime(df['Start Time']).dt.strftime('%A')==day.capitalize()]
-        
+
     print('\nYour city of choice is {}'.format(city.upper()))
     print('You have chosen to explore {} as month of the year'.format(month.upper()))
     print('Your day of the week is {}'.format(day.upper()))
-   
+
     return df
 
 def print_df(df):
     """
     @v1.1
     Enables the user to see the raw data from the dataframe 5 rows consecutively
-    
+
     """
 
     key="yes"
@@ -112,7 +112,7 @@ def time_stats(df):
     """
     Displays statistics on the most frequent times of travel.
     """
-    
+
     print('\nCalculating The Most Frequent Times of Travel...\n')
     start_time = time.time()
 
@@ -131,6 +131,11 @@ def time_stats(df):
     hour_mode=df['starthour'].mode()
     print('*  The most common travel hour of the day is: {} \'o clock'.format(int(hour_mode)))
 
+   '''
+   Refactoring the overall distribution:
+   speeding up the refresh rate
+   '''
+
     # plots the overall distribution of travel hours during the chosen period
     df['starthour'].plot(kind='hist',bins=24,histtype='stepfilled',facecolor='b')
     plt.xlabel('Hour of the day')
@@ -139,7 +144,7 @@ def time_stats(df):
     plt.xlim(0, 25)
     plt.grid(True)
     plt.show()
-    
+
     print('\nThis took %s seconds.' % (time.time() - start_time))
     print('='*60)
 
@@ -174,18 +179,18 @@ def trip_duration_stats(df):
     print('\nCalculating Trip Duration...\n')
     start_time = time.time()
 
-    
+
     df['StartTime']=pd.to_datetime(df['Start Time'])
     df['EndTime']=pd.to_datetime(df['End Time'])
-    df['DiffTime']=df['EndTime']-df['StartTime']    
-    
+    df['DiffTime']=df['EndTime']-df['StartTime']
+
     # display total travel time
     TotalTravelTime=df['DiffTime'].sum()
-    
+
     print ("The total travel time is {} days, {} hours, {} minutes and {} seconds.".format(TotalTravelTime.days,
            int(TotalTravelTime.seconds / 3600),int((TotalTravelTime.seconds % 3600)/60 ),
            TotalTravelTime.seconds % 60))
-    
+
     # display mean travel time
     MeanTravelTime=df['DiffTime'].mean()
     print ("The mean travel time is {} days, {} hours, {} minutes and {} seconds.".format(MeanTravelTime.days,
@@ -205,33 +210,33 @@ def user_stats(df):
     #calculate total number of rides
     df_ride=df.shape
     print('\n*  The total number of rides is: {}\n'.format(df_ride[0]))
-    
+
     # Display counts of user types
     if 'User Type' in df.columns:
         total_users=0
         df_unknown_user = df['User Type'].isnull().sum()
         df_user = df['User Type'].value_counts()
-        
+
         for x in range(df_user.shape[0]):
             print('*  The number of {} is: {}'.format(df_user.index[x-1], df_user[x-1]))
             total_users+=df_user[x-1]
-            
+
         print('*  The number of unknown users is: {}'.format(df_unknown_user))
         print('**  Crosscheck: Total users + Unknown users = {}'.format(total_users+df_unknown_user))
     else:
         print ('*  No User Type data available!!')
-    
-    
+
+
     # Display counts of gender
     if 'Gender' in df.columns:
         total_gender=0
         df_unknown_gender=df['Gender'].isnull().sum()
         df_gender = df['Gender'].value_counts()
-        
+
         for x in range(df_gender.shape[0]):
             print('*  The number of {} persons is: {}'.format(df_gender.index[x-1], df_gender[x-1]))
             total_gender+=df_gender[x-1]
-        
+
         print('*  The number of unknown gender is: {}'.format(df_unknown_gender))
         print('**  Crosscheck: Total persons + Unknown = {}'.format(total_gender+df_unknown_gender))
     else:
@@ -266,4 +271,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
