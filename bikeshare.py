@@ -229,6 +229,9 @@ def user_stats(df):
     else:
         print ('*  No User Type data available!!')
 
+    '''
+    Refactor: simplify wrangling gender data
+    '''
 
     # Display counts of gender
     if 'Gender' in df.columns:
